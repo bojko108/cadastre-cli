@@ -1,0 +1,8 @@
+-- all files specified in this file will be downloaded
+-- lines starting with "--" are skipped
+https://kais.cadastre.bg/bg/OpenData/Download?path=област София (столица)/община Столична/гр. София (68134) - район Нови Искър/поземлени имоти.zip
+--https://kais.cadastre.bg/bg/OpenData/Download?path=област София (столица)/община Столична/гр. София (68134) - район Нови Искър/самостоятелни обекти.zip
+--https://kais.cadastre.bg/bg/OpenData/Download?path=област София (столица)/община Столична/гр. София (68134) - район Нови Искър/сгради.zip
+https://kais.cadastre.bg/bg/OpenData/Download?path=област София (столица)/община Столична/гр. София (68134) - район Нови Искър/собственост ПИ.zip
+--https://kais.cadastre.bg/bg/OpenData/Download?path=област София (столица)/община Столична/гр. София (68134) - район Нови Искър/собственост сгради.zip
+--https://kais.cadastre.bg/bg/OpenData/Download?path=област София (столица)/община Столична/гр. София (68134) - район Нови Искър/собственост СОС.zip

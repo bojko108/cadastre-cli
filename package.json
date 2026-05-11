@@ -1,0 +1,36 @@
+{
+    "name": "cadastre-cli",
+    "version": "1.0.0",
+    "description": "CLI tool for downloading and processing open data from Bulgarian Cadastral Agency",
+    "type": "module",
+    "author": "bojko108 <bojko108@gmail.com>",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bojko108/cadastre-cli"
+    },
+    "bin": {
+        "cadastre": "./bin/cadastre.js"
+    },
+    "files": [
+        "bin/",
+        "src/"
+    ],
+    "scripts": {
+        "start": "node bin/cadastre.js download --help",
+        "fetch-test": "node bin/cadastre.js download --urls ./configs/files.test.txt --out ./downloads_test",
+        "fetch-all": "node bin/cadastre.js download --urls ./configs/files.all.txt",
+        "unzip-test": "node bin/cadastre.js unzip --in ./downloads_test --out ./data_test",
+        "unzip": "node bin/cadastre.js unzip --in ./downloads --out ./data"
+    },
+    "engines": {
+        "node": ">=22"
+    },
+    "dependencies": {
+        "chalk": "^5.4.1",
+        "commander": "^12.1.0",
+        "extract-zip": "^2.0.1"
+    },
+    "devDependencies": {
+        "dotenv": "^17.4.0"
+    }
+}
