@@ -112,7 +112,7 @@ export async function shp2geojsonCommand(opts) {
         const t0 = Date.now();
 
         try {
-            const fc = await shapefile.read(shpPath);
+            const fc = await shapefile.read(shpPath, undefined, { encoding: 'utf8' });
 
             if (!fc || fc.type !== 'FeatureCollection') {
                 throw new Error('Unexpected GeoJSON output (expected FeatureCollection)');
