@@ -20,7 +20,11 @@
         "fetch-test": "node bin/cadastre.js download --urls ./configs/files.test.txt --out ./downloads_test",
         "fetch-all": "node bin/cadastre.js download --urls ./configs/files.all.txt",
         "unzip-test": "node bin/cadastre.js unzip --in ./downloads_test --out ./data_test",
-        "unzip": "node bin/cadastre.js unzip --in ./downloads --out ./data"
+        "unzip": "node bin/cadastre.js unzip --in ./downloads --out ./data",
+        "xlsx2csv-test": "node bin/cadastre.js xlsx2csv --in ./data_test",
+        "xlsx2csv": "node bin/cadastre.js xlsx2csv --in ./data",
+        "shp2geojson-test": "node bin/cadastre.js shp2geojson --in ./data_test",
+        "shp2geojson": "node bin/cadastre.js shp2geojson --in ./data"
     },
     "engines": {
         "node": ">=22"
@@ -28,7 +32,9 @@
     "dependencies": {
         "chalk": "^5.4.1",
         "commander": "^12.1.0",
-        "extract-zip": "^2.0.1"
+        "extract-zip": "^2.0.1",
+        "shapefile": "^0.6.6",
+        "xlsx": "^0.18.5"
     },
     "devDependencies": {
         "dotenv": "^17.4.0"

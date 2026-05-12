@@ -78,7 +78,7 @@ export async function unzipCommand(opts) {
         const destDir = path.resolve(path.join(outDir, path.dirname(rel), folderName));
         const label = rel.replace(/\\/g, '/');
 
-        log.info(`↓ ${label}`);
+        log.info(`→ ${label}`);
         const t0 = Date.now();
 
         try {

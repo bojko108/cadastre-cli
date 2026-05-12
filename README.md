@@ -2,6 +2,8 @@
 
 A Node.js CLI for downloading, unpacking and processing of open data from Bulgarian Cadastral Agency (URL lists and mirrored folder layout).
 
+> If all files are downloaded, the total size is approximately 6 GB (compressed as ZIP files). After extraction, the data expands to about 100 GB. Once converted to GeoJSON and CSV formats, the total size reduces to roughly 35 GB.
+
 ---
 
 ## Requirements
@@ -82,6 +84,41 @@ Extraction uses the [`extract-zip`](https://www.npmjs.com/package/extract-zip) p
 
 ---
 
+### `xlsx2csv`
+
+Recursively finds every `.xlsx` under `--in`, converts each workbook to one or more UTF-8 CSV files, and **deletes the original `.xlsx`**.
+
+- If the workbook has **1 sheet**: writes `SameName.csv`
+- If the workbook has **multiple sheets**: writes `SameName__SheetName.csv` per sheet
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-i, --in <dir>` | Root directory to scan for `.xlsx` files (**required**) | — |
+| `-l, --log-dir <dir>` | Directory for log files | `./logs` |
+| `-c, --concurrency <n>` | Parallel conversions | Taken from `XLSX2CSV_CONCURRENCY` when the CLI starts, if set; otherwise defaults to `4` |
+
+```bash
+cadastre xlsx2csv --in ./data
+cadastre xlsx2csv --in ./data --log-dir ./logs --concurrency 4
+```
+
+---
+
+### `shp2geojson`
+
+Recursively finds every `.shp` under `--in`, converts each shapefile to a GeoJSON `FeatureCollection` (`.geojson`), then **deletes the original shapefile parts** (e.g. `.shp`, `.dbf`, `.shx`, `.prj`, `.cpg`, etc.).
+
+| Option | Description | Default |
+|--------|-------------|---------|
+| `-i, --in <dir>` | Root directory to scan for `.shp` files (**required**) | — |
+| `-l, --log-dir <dir>` | Directory for log files | `./logs` |
+| `-c, --concurrency <n>` | Parallel conversions | Taken from `SHP2GEOJSON_CONCURRENCY` when the CLI starts, if set; otherwise defaults to `4` |
+
+```bash
+cadastre shp2geojson --in ./data
+cadastre shp2geojson --in ./data --log-dir ./logs --concurrency 2
+```
+
 ## npm scripts
 
 | Script | Purpose (see `package.json` for additional flags) |
@@ -91,6 +128,10 @@ Extraction uses the [`extract-zip`](https://www.npmjs.com/package/extract-zip) p
 | `npm run fetch-all` | Download all URLs from `configs/files.all.txt` |
 | `npm run unzip-test` | Sample unzip `./downloads_test` → `./data_test` |
 | `npm run unzip` | Unzip `./downloads` → `./data` (see `package.json` for exact flags) |
+| `npm run xlsx2csv-test` | Convert spreadsheets in `./data_test` to CSV (in-place) |
+| `npm run xlsx2csv` | Convert spreadsheets in `./data` to CSV (in-place) |
+| `npm run shp2geojson-test` | Convert shapefiles in `./data_test` to GeoJSON (in-place) |
+| `npm run shp2geojson` | Convert shapefiles in `./data` to GeoJSON (in-place) |
 
 ---
 
@@ -100,6 +141,8 @@ Each run creates a timestamped log under `--log-dir`:
 
 - `download-*.log` for `cadastre download`
 - `unzip-*.log` for `cadastre unzip`
+- `xlsx2csv-*.log` for `cadastre xlsx2csv`
+- `shp2geojson-*.log` for `cadastre shp2geojson`
 
 The same lines are printed to the terminal (with colour).
 
@@ -111,6 +154,8 @@ The same lines are printed to the terminal (with colour).
 cadastre --help
 cadastre download --help
 cadastre unzip --help
+cadastre xlsx2csv --help
+cadastre shp2geojson --help
 ```
 
 ---
@@ -118,14 +163,16 @@ cadastre unzip --help
 ## Project layout
 
 ```
-bin/cadastre.js          ← CLI entry (Commander + dotenv)
-configs/                 ← example URL lists (e.g. files.test.txt, files.all.txt)
+bin/cadastre.js            ← CLI entry (Commander + dotenv)
+configs/                   ← example URL lists (e.g. files.test.txt, files.all.txt)
 src/
-  commands/download.js   ← `download` command
-  commands/unzip.js      ← `unzip` command
-  downloader.js          ← HTTP download, URL → path, redirect limit
-  pool.js                ← bounded concurrency worker pool
-  logger.js              ← stdout + file logging
+  commands/download.js     ← `download` command
+  commands/unzip.js        ← `unzip` command
+  commands/xlsx2csv.js     ← `xlsx2csv` command
+  commands/shp2geojson.js  ← `shp2geojson` command
+  downloader.js            ← HTTP download, URL → path, redirect limit
+  pool.js                  ← bounded concurrency worker pool
+  logger.js                ← stdout + file logging
 package.json
 ```
 
@@ -133,4 +180,4 @@ package.json
 
 ## Exit status
 
-If any download or unzip operation fails, the command exits with code **1** after logging errors (useful for scripts and schedulers).
+If any operation fails, the command exits with code **1** after logging errors (useful for scripts and schedulers).
