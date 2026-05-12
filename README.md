@@ -123,7 +123,7 @@ cadastre shp2geojson --in ./data --log-dir ./logs --concurrency 2
 
 | Script | Purpose (see `package.json` for additional flags) |
 |--------|---------|
-| `npm start` | Prints `download --help` |
+| `npm start` | Downloads all URLs from `configs/files.all.txt` and runs post-processing tasks - `unzip`, `xlsx2csv` and `shp2geojson` |
 | `npm fetch-test` | Sample download using `configs/files.test.txt` |
 | `npm run fetch-all` | Download all URLs from `configs/files.all.txt` |
 | `npm run unzip-test` | Sample unzip `./downloads_test` → `./data_test` |
