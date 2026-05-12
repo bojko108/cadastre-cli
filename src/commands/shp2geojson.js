@@ -108,7 +108,7 @@ export async function shp2geojsonCommand(opts) {
 
     await runPool(files, concurrency, async (shpPath) => {
         const rel = path.relative(inDir, shpPath).replace(/\\/g, '/');
-        log.info(`↓ ${rel}`);
+        log.info(`→ ${rel}`);
         const t0 = Date.now();
 
         try {

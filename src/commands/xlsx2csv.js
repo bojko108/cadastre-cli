@@ -99,7 +99,7 @@ export async function xlsx2csvCommand(opts) {
 
     await runPool(files, concurrency, async (xlsxPath) => {
         const rel = path.relative(inDir, xlsxPath).replace(/\\/g, '/');
-        log.info(`↓ ${rel}`);
+        log.info(`→ ${rel}`);
         const t0 = Date.now();
 
         try {
