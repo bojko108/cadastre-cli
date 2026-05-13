@@ -16,7 +16,7 @@
         "src/"
     ],
     "scripts": {
-        "start": "npm run fetch-all && npm run unzip && xlsx2csv && shp2geojson",
+        "start": "npm run fetch-all && npm run unzip && npm run xlsx2csv && npm run shp2geojson",
         "fetch-test": "node bin/cadastre.js download --urls ./configs/files.test.txt --out ./downloads_test",
         "fetch-all": "node bin/cadastre.js download --urls ./configs/files.all.txt",
         "unzip-test": "node bin/cadastre.js unzip --in ./downloads_test --out ./data_test",
