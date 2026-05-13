@@ -1,0 +1,776 @@
+{
+    "version": "1.0",
+    "description": "Field mapping between source data (GeoJSON/CSV) and database tables",
+    "entities": {
+        "building": {
+            "type": "geojson",
+            "table": "building",
+            "description": "Building records from GeoJSON files",
+            "fields": [
+                {
+                    "dbField": "cad_id",
+                    "sourceField": "cadnum",
+                    "dataType": "VARCHAR(50)",
+                    "required": true,
+                    "description": "Cadastral ID - unique identifier"
+                },
+                {
+                    "dbField": "ekatte",
+                    "sourceField": "ekatte",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "EKATTE code"
+                },
+                {
+                    "dbField": "ekatte_name",
+                    "sourceField": "ekattefn",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "EKATTE name"
+                },
+                {
+                    "dbField": "cad_reg_id",
+                    "sourceField": "cadreg",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral region ID"
+                },
+                {
+                    "dbField": "cad_prop_id",
+                    "sourceField": "cadimm",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral property ID"
+                },
+                {
+                    "dbField": "cad_buld_id",
+                    "sourceField": "cadbuild",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral building ID"
+                },
+                {
+                    "dbField": "floor_count",
+                    "sourceField": "flrcount",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Floor count"
+                },
+                {
+                    "dbField": "app_count",
+                    "sourceField": "appcount",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Apartment count"
+                },
+                {
+                    "dbField": "func_code",
+                    "sourceField": "funccode",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Function code"
+                },
+                {
+                    "dbField": "func_type",
+                    "sourceField": "functype",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Function type"
+                },
+                {
+                    "dbField": "property_address",
+                    "sourceField": "immaddr",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Property address"
+                },
+                {
+                    "dbField": "old_cad_id",
+                    "sourceField": "oldident",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Old cadastral ID"
+                },
+                {
+                    "dbField": "property_code",
+                    "sourceField": "propcode",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Property code"
+                },
+                {
+                    "dbField": "property_type",
+                    "sourceField": "proptype",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Property type"
+                },
+                {
+                    "dbField": "quar_name",
+                    "sourceField": "quarname",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Quarter name"
+                },
+                {
+                    "dbField": "reg_name",
+                    "sourceField": "regname",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Registration name"
+                },
+                {
+                    "dbField": "street_name",
+                    "sourceField": "strename",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Street name"
+                },
+                {
+                    "dbField": "street_number",
+                    "sourceField": "strnum",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Street number"
+                },
+                {
+                    "dbField": "validate",
+                    "sourceField": "validate",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Validation date and note"
+                },
+                {
+                    "dbField": "geom",
+                    "sourceField": "geometry",
+                    "dataType": "GEOMETRY(POLYGON, 7801)",
+                    "required": false,
+                    "description": "Geometry (SRID 7801)"
+                }
+            ]
+        },
+        "property": {
+            "type": "geojson",
+            "table": "property",
+            "description": "Property records from GeoJSON files",
+            "fields": [
+                {
+                    "dbField": "cad_id",
+                    "sourceField": "cadnum",
+                    "dataType": "VARCHAR(50)",
+                    "required": true,
+                    "description": "Cadastral ID - unique identifier"
+                },
+                {
+                    "dbField": "ekatte",
+                    "sourceField": "ekatte",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "EKATTE code"
+                },
+                {
+                    "dbField": "ekatte_name",
+                    "sourceField": "ekattefn",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "EKATTE name"
+                },
+                {
+                    "dbField": "cad_reg_id",
+                    "sourceField": "cadreg",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral region ID"
+                },
+                {
+                    "dbField": "cad_prop_id",
+                    "sourceField": "cadimm",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral property ID"
+                },
+                {
+                    "dbField": "property_address",
+                    "sourceField": "immaddr",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Property address"
+                },
+                {
+                    "dbField": "old_cad_id",
+                    "sourceField": "oldident",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Old cadastral ID"
+                },
+                {
+                    "dbField": "parcel",
+                    "sourceField": "parcel",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Parcel number"
+                },
+                {
+                    "dbField": "place_name",
+                    "sourceField": "place",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Place name"
+                },
+                {
+                    "dbField": "property_code",
+                    "sourceField": "propcode",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Property code"
+                },
+                {
+                    "dbField": "property_type",
+                    "sourceField": "proptype",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Property type"
+                },
+                {
+                    "dbField": "purpose_code",
+                    "sourceField": "purpcode",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Purpose code"
+                },
+                {
+                    "dbField": "purpose_type",
+                    "sourceField": "urptype",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Purpose type"
+                },
+                {
+                    "dbField": "quar_name",
+                    "sourceField": "quarname",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Quarter name"
+                },
+                {
+                    "dbField": "quarter",
+                    "sourceField": "quarter",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Quarter"
+                },
+                {
+                    "dbField": "reg_name",
+                    "sourceField": "regname",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Region name"
+                },
+                {
+                    "dbField": "street_name",
+                    "sourceField": "strename",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Street name"
+                },
+                {
+                    "dbField": "street_number",
+                    "sourceField": "strnum",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Street number"
+                },
+                {
+                    "dbField": "use_code",
+                    "sourceField": "usecode",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Use code"
+                },
+                {
+                    "dbField": "use_type",
+                    "sourceField": "usetype",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Use type"
+                },
+                {
+                    "dbField": "validate",
+                    "sourceField": "validate",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Validation date and note"
+                },
+                {
+                    "dbField": "geom",
+                    "sourceField": "geometry",
+                    "dataType": "GEOMETRY(POLYGON, 7801)",
+                    "required": false,
+                    "description": "Geometry (SRID 7801)"
+                }
+            ]
+        },
+        "unit": {
+            "type": "geojson",
+            "table": "unit",
+            "description": "Unit (apartment) records from GeoJSON files",
+            "fields": [
+                {
+                    "dbField": "cad_id",
+                    "sourceField": "cadnum",
+                    "dataType": "VARCHAR(50)",
+                    "required": true,
+                    "description": "Cadastral ID"
+                },
+                {
+                    "dbField": "ekatte",
+                    "sourceField": "ekatte",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Ekatte code"
+                },
+                {
+                    "dbField": "ekatte_name",
+                    "sourceField": "ekattefn",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Ekatte name"
+                },
+                {
+                    "dbField": "cad_reg_id",
+                    "sourceField": "cadreg",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral region ID"
+                },
+                {
+                    "dbField": "cad_prop_id",
+                    "sourceField": "cadimm",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral property ID"
+                },
+                {
+                    "dbField": "cad_buld_id",
+                    "sourceField": "cadbuld",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral building ID"
+                },
+                {
+                    "dbField": "cad_app_id",
+                    "sourceField": "cadapp",
+                    "dataType": "INTEGER",
+                    "required": false,
+                    "description": "Cadastral apartment ID"
+                },
+                {
+                    "dbField": "app_code",
+                    "sourceField": "appcode",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Apartment code"
+                },
+                {
+                    "dbField": "app_number",
+                    "sourceField": "appnum",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Apartment number"
+                },
+                {
+                    "dbField": "app_type",
+                    "sourceField": "apptype",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Apartment type"
+                },
+                {
+                    "dbField": "block_number",
+                    "sourceField": "blocknum",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Block number"
+                },
+                {
+                    "dbField": "entrance",
+                    "sourceField": "entrance",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Entrance"
+                },
+                {
+                    "dbField": "property_code",
+                    "sourceField": "propcode",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Property code"
+                },
+                {
+                    "dbField": "property_type",
+                    "sourceField": "proptype",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Property type"
+                },
+                {
+                    "dbField": "floor_count",
+                    "sourceField": "flrcount",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Floor count"
+                },
+                {
+                    "dbField": "floor_number",
+                    "sourceField": "flrnum",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Floor number"
+                },
+                {
+                    "dbField": "property_address",
+                    "sourceField": "immaddr",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Property address"
+                },
+                {
+                    "dbField": "quar_name",
+                    "sourceField": "quarname",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Ekatte name"
+                },
+                {
+                    "dbField": "reg_name",
+                    "sourceField": "regname",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Region name"
+                },
+                {
+                    "dbField": "street_name",
+                    "sourceField": "strename",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Street name"
+                },
+                {
+                    "dbField": "street_number",
+                    "sourceField": "strnum",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Street number"
+                },
+                {
+                    "dbField": "validate",
+                    "sourceField": "validate",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Validation date and note"
+                },
+                {
+                    "dbField": "geom",
+                    "sourceField": "geometry",
+                    "dataType": "GEOMETRY(POLYGON, 7801)",
+                    "required": false,
+                    "description": "Geometry (SRID 7801)"
+                }
+            ]
+        },
+        "building_ownership": {
+            "type": "csv",
+            "table": "building_ownership",
+            "description": "Building ownership records from CSV files",
+            "fields": [
+                {
+                    "dbField": "cad_id",
+                    "sourceField": "кадастрален идентификатор",
+                    "dataType": "VARCHAR(50)",
+                    "required": true,
+                    "description": "Cadastral ID - links to building table"
+                },
+                {
+                    "dbField": "right_type_code",
+                    "sourceField": "код на вида на правото",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Right type code"
+                },
+                {
+                    "dbField": "right_type",
+                    "sourceField": "вид на правото",
+                    "dataType": "VARCHAR(255)",
+                    "required": false,
+                    "description": "Right type"
+                },
+                {
+                    "dbField": "right_desc",
+                    "sourceField": "описание на правото",
+                    "dataType": "VARCHAR(1000)",
+                    "required": false,
+                    "description": "Right description"
+                },
+                {
+                    "dbField": "owner_id",
+                    "sourceField": "идентификационен номер на субекта",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Owner ID"
+                },
+                {
+                    "dbField": "owner_code",
+                    "sourceField": "код на лицето",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Owner code"
+                },
+                {
+                    "dbField": "owner_type",
+                    "sourceField": "вид на лицето",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Owner type"
+                },
+                {
+                    "dbField": "owner_name",
+                    "sourceField": "име на лицето",
+                    "dataType": "VARCHAR(255)",
+                    "required": false,
+                    "description": "Owner name"
+                },
+                {
+                    "dbField": "owner_note",
+                    "sourceField": "забележка лице",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Owner note"
+                },
+                {
+                    "dbField": "document_code",
+                    "sourceField": "код на документа",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Document code"
+                },
+                {
+                    "dbField": "document_type",
+                    "sourceField": "вид на документа",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document type"
+                },
+                {
+                    "dbField": "document_desc",
+                    "sourceField": "описание на документа",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document description"
+                },
+                {
+                    "dbField": "document_note",
+                    "sourceField": "забележка док.",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document note"
+                }
+            ]
+        },
+        "property_ownership": {
+            "type": "csv",
+            "table": "property_ownership",
+            "description": "Property ownership records from CSV files",
+            "fields": [
+                {
+                    "dbField": "cad_id",
+                    "sourceField": "кадастрален идентификатор",
+                    "dataType": "VARCHAR(50)",
+                    "required": true,
+                    "description": "Cadastral ID - links to property table"
+                },
+                {
+                    "dbField": "right_type_code",
+                    "sourceField": "код на вида на правото",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Right type code"
+                },
+                {
+                    "dbField": "right_type",
+                    "sourceField": "вид на правото",
+                    "dataType": "VARCHAR(255)",
+                    "required": false,
+                    "description": "Right type"
+                },
+                {
+                    "dbField": "right_desc",
+                    "sourceField": "описание на правото",
+                    "dataType": "VARCHAR(1000)",
+                    "required": false,
+                    "description": "Right description"
+                },
+                {
+                    "dbField": "owner_id",
+                    "sourceField": "идентификационен номер на субекта",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Owner ID"
+                },
+                {
+                    "dbField": "owner_code",
+                    "sourceField": "код на лицето",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Owner code"
+                },
+                {
+                    "dbField": "owner_type",
+                    "sourceField": "вид на лицето",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Owner type"
+                },
+                {
+                    "dbField": "owner_name",
+                    "sourceField": "име на лицето",
+                    "dataType": "VARCHAR(255)",
+                    "required": false,
+                    "description": "Owner name"
+                },
+                {
+                    "dbField": "owner_note",
+                    "sourceField": "забележка лице",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Owner note"
+                },
+                {
+                    "dbField": "document_code",
+                    "sourceField": "код на документа",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Document code"
+                },
+                {
+                    "dbField": "document_type",
+                    "sourceField": "вид на документа",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document type"
+                },
+                {
+                    "dbField": "document_desc",
+                    "sourceField": "описание на документа",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document description"
+                },
+                {
+                    "dbField": "document_note",
+                    "sourceField": "забележка док.",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document note"
+                }
+            ]
+        },
+        "unit_ownership": {
+            "type": "csv",
+            "table": "unit_ownership",
+            "description": "Unit ownership records from CSV files",
+            "fields": [
+                {
+                    "dbField": "cad_id",
+                    "sourceField": "кадастрален идентификатор",
+                    "dataType": "VARCHAR(50)",
+                    "required": true,
+                    "description": "Cadastral ID - links to unit table"
+                },
+                {
+                    "dbField": "right_type_code",
+                    "sourceField": "код на вида на правото",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Right type code"
+                },
+                {
+                    "dbField": "right_type",
+                    "sourceField": "вид на правото",
+                    "dataType": "VARCHAR(255)",
+                    "required": false,
+                    "description": "Right type"
+                },
+                {
+                    "dbField": "right_desc",
+                    "sourceField": "описание на правото",
+                    "dataType": "VARCHAR(1000)",
+                    "required": false,
+                    "description": "Right description"
+                },
+                {
+                    "dbField": "owner_id",
+                    "sourceField": "идентификационен номер на субекта",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Owner ID"
+                },
+                {
+                    "dbField": "owner_code",
+                    "sourceField": "код на лицето",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Owner code"
+                },
+                {
+                    "dbField": "owner_type",
+                    "sourceField": "вид на лицето",
+                    "dataType": "VARCHAR(100)",
+                    "required": false,
+                    "description": "Owner type"
+                },
+                {
+                    "dbField": "owner_name",
+                    "sourceField": "име на лицето",
+                    "dataType": "VARCHAR(255)",
+                    "required": false,
+                    "description": "Owner name"
+                },
+                {
+                    "dbField": "owner_note",
+                    "sourceField": "забележка лице",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Owner note"
+                },
+                {
+                    "dbField": "document_code",
+                    "sourceField": "код на документа",
+                    "dataType": "SMALLINT",
+                    "required": false,
+                    "description": "Document code"
+                },
+                {
+                    "dbField": "document_type",
+                    "sourceField": "вид на документа",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document type"
+                },
+                {
+                    "dbField": "document_desc",
+                    "sourceField": "описание на документа",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document description"
+                },
+                {
+                    "dbField": "document_note",
+                    "sourceField": "забележка док.",
+                    "dataType": "VARCHAR(500)",
+                    "required": false,
+                    "description": "Document note"
+                }
+            ]
+        }
+    }
+}
