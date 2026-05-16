@@ -9,11 +9,11 @@ const LEVELS = {
     error: { label: 'ERR', color: chalk.red },
 };
 
-export function createLogger(logDir, prefix = 'log') {
+export function createLogger(logDir, suffix = 'log') {
     fs.mkdirSync(logDir, { recursive: true });
 
     const stamp = new Date().toISOString().replace(/:/g, '-').replace(/\..+/, '');
-    const logPath = path.join(logDir, `${prefix}-${stamp}.log`);
+    const logPath = path.join(logDir, `${stamp}_${suffix}.log`);
     const stream = fs.createWriteStream(logPath, { flags: 'a' });
 
     function log(level, msg) {

@@ -16,7 +16,8 @@
         "src/"
     ],
     "scripts": {
-        "start": "node bin/cadastre.js download --help",
+        "start": "npm run fetch-all && npm run unzip && npm run xlsx2csv && npm run shp2geojson",
+        "test": "npm run fetch-test && npm run unzip-test && npm run xlsx2csv-test && npm run shp2geojson-test",
         "fetch-test": "node bin/cadastre.js download --urls ./configs/files.test.txt --out ./downloads_test",
         "fetch-all": "node bin/cadastre.js download --urls ./configs/files.all.txt",
         "unzip-test": "node bin/cadastre.js unzip --in ./downloads_test --out ./data_test",
@@ -32,11 +33,9 @@
     "dependencies": {
         "chalk": "^5.4.1",
         "commander": "^12.1.0",
+        "dotenv": "^17.4.2",
         "extract-zip": "^2.0.1",
         "shapefile": "^0.6.6",
         "xlsx": "^0.18.5"
-    },
-    "devDependencies": {
-        "dotenv": "^17.4.0"
     }
 }
